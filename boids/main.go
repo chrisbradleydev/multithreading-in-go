@@ -10,13 +10,13 @@ import (
 
 const (
 	screenWidth, screenHeight = 640, 360
-	boidCount = 500
-	viewRadius = 13
-	adjRate = 0.015
+	boidCount = 750
+	viewRadius = 10
+	adjRate = 0.025
 )
 
 var (
-	green   = color.RGBA{10, 255, 50, 255}
+	pink   = color.RGBA{244, 114, 182, 255}
 	boids   [boidCount]*Boid
 	boidMap [screenWidth+1][screenHeight+1]int
 	rWlock = sync.RWMutex{}
@@ -30,10 +30,10 @@ func (g *Game) Update() error {
 
 func (g *Game) Draw(screen *ebiten.Image) {
 	for _, boid := range boids {
-		screen.Set(int(boid.position.x+1), int(boid.position.y), green)
-		screen.Set(int(boid.position.x-1), int(boid.position.y), green)
-		screen.Set(int(boid.position.x), int(boid.position.y-1), green)
-		screen.Set(int(boid.position.x), int(boid.position.y+1), green)
+		screen.Set(int(boid.position.x+1), int(boid.position.y), pink)
+		screen.Set(int(boid.position.x-1), int(boid.position.y), pink)
+		screen.Set(int(boid.position.x), int(boid.position.y-1), pink)
+		screen.Set(int(boid.position.x), int(boid.position.y+1), pink)
 	}
 }
 
